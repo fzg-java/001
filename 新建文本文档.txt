@@ -1,0 +1,119 @@
+github 
+账号 zqy-futher
+密码:zhuqingya0820
+
+sourceTree
+账号:futher
+密码:zhuqingya
+
+(ADDRESS = (PROTOCOL = TCP)(HOST = DESKTOP-HQNRSC7)(PORT = 1521))
+
+LISTENER_ORCL
+
+
+
+
+
+
+
+
+
+
+
+
+
+SID_LIST_LISTENER =
+  (SID_LIST =
+    (SID_DESC =
+      (SID_NAME = CLRExtProc)
+      (ORACLE_HOME = F:\app\ASUS\product\11.2.0\dbhome_1)
+      (PROGRAM = extproc)
+      (ENVS = "EXTPROC_DLLS=ONLY:F:\app\ASUS\product\11.2.0\dbhome_1\bin\oraclr11.dll")
+    )
+    (SID_DESC =
+      (SID_NAME = CLRExtProc)
+      (ORACLE_HOME = F:\app\ASUS\product\11.2.0\dbhome_1)
+      (PROGRAM = extproc)
+      (ENVS = "EXTPROC_DLLS=ONLY:F:\app\ASUS\product\11.2.0\dbhome_1\bin\oraclr11.dll")
+    )
+    (SID_DESC =
+      (SID_NAME = CLRExtProc)
+      (ORACLE_HOME = F:\app\ASUS\product\11.2.0\dbhome_1)
+      (PROGRAM = extproc)
+      (ENVS = "EXTPROC_DLLS=ONLY:F:\app\ASUS\product\11.2.0\dbhome_1\bin\oraclr11.dll")
+    )
+  )
+
+
+DESKTOP-HQNRSC7
+
+F:\app\ASUS\product\11.1.0\db_1\bin
+
+F:\app\ASUS\product\11.2.0\dbhome_1\bin
+
+C:\ProgramData\Oracle\Java\javapath;%JAVA_HOME%\bin;%ANDROID_SDK_HOME%\build-tools;
+
+
+
+
+
+touch text.txt 创建文件
+cat text.txt 查看文件
+vi text.txt 编辑文件
+默认在命令行模式下,不能写入内容
+输入i,o,a,进行编辑模式,可以写入内容
+编辑完成,想要保存时,按esc 退出编辑模式,进入命令行
+写入 :wq 后回车 -->保存文件
+再输入cat text.txt 查看文件
+若不想保存写入的内容   写入 :q 退出 或 :q!强制退出
+
+
+
+
+
+
+
+
+
+
+
+
+主题:
+发件人+求职岗位
+
+
+
+
+用户表 users
+
+用户id   uid 主键自增
+角色id     rid
+用户名   uname
+密码     upassword
+用户状态 ustatus   0 可用 1 停用
+
+角色表 role
+
+角色id     rid 主键自增
+角色名称   rname
+
+权限表   limit
+
+权限id        lid 主键自增
+父级菜单id    fatherId
+权限名称      lname 
+权限是否可用  luse 0 可用 1 停用
+url
+
+角色权限表 roleLimit
+
+id 自增
+角色id 
+权限id
+
+管理员编辑
+管理员 uname
+初始密码 upsd
+确认密码 repsd
+角色id rid
+
