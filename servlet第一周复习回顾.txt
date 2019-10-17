@@ -1,0 +1,127 @@
+servlet
+jsp
+
+就业：servlet比jsp重要
+找工作：笔试  面试               机试
+			  项目搭建 技术      需求
+			  servlet            servlet
+	    		
+jsp:面试需求 
+	jsp的9大内置对象  
+	jsp的四大作用域
+	jsp的动静包含
+	
+servlet：
+	springmvc  底层servlet
+	springboot 底层servlet
+	servlet的作用：中介  接收数据 响应数据
+	servlet转发和重定向的区别？ 
+	servlet：配置文件和注解
+		启动tomcat
+		http://127.0.0.1:8080/stockmanager/user/list?id=1
+		找到当前应用 stockmanager
+		解析当前应用的web.xml
+		/user/list  url-pattern
+		web.xml servlet  servlet-mapping
+		servlet-class
+		service
+		执行service代码
+		String id = request.getParameter("id");
+		request.setAttribute("key","value");
+		//转发
+		request.getRequestDispatcher("login.jsp").forward(request,response);
+		//重定向
+		response.sendRedirect("login.jsp");
+		//处理ajax请求，返回json数据
+		PrintWriter pw = response.getWriter();
+		pw.println("json");
+		pw.flush();
+		pw.close();
+		
+	servlet的生命周期：
+		servlet创建到servlet销毁的整个过程都属于servlet生命周期
+		init  当servlet初始化的时候执行init方法 ，该方法只执行一次
+		service 每次调用都会执行service
+		doGet  根据当前方法请求类型（get，post）自动选择（service方法调用分配）
+		doPost
+		destroy 销毁当前servlet对象之前调用
+	web.xml配置文件内容：
+		servlet
+			servlet-name
+			servlet-class
+			init-param
+				param-name
+				param-value
+			load-on-startup	
+		servlet-mapping
+			servlet-name
+			url-pattern
+		context-param
+			param-name
+			param-value
+	
+		@WebServlet("/url-pattern")
+		@WebServlet(urlPatterns="")
+	
+今天课程
+		servlet注解   
+			@WebServlet(urlPatterns = {"/user","/userDemo"},loadOnStartup = 1,initParams = {@WebInitParam(name = "character", value = "utf-8")})
+		el   只能在jsp中使用   输出
+			${变量} ${对象名.属性名}
+			
+				<%=request.getAttribute("username") %>  <br/>
+				<%=session.getAttribute("username") %>  <br/>
+				<%=application.getAttribute("username") %>  <br/>
+				<hr/>
+				request，session，application作用域范围从小到大
+				使用el表达式取值时，从范围最小的开始取，范围越小，优先级越高
+				el表达式，先从request中查找，如果存在，直接取出，
+				不存在再从sesion中查找，当session中不存在时，从application中查找  
+				<br/>
+				${username} <br/>  
+				${sessionScope.username} <br/>  
+				${applicationScope.username} <br/>  
+	
+	
+		jstl标签函数库  只能在jsp中使用
+			使用jstl的步骤：1.standard.jar  jstl.jar   <br/>
+				   2.在使用的页面上引入jstl标签函数库  <%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  --%> <br/>
+				   3.使用  循环 判断 <br/>
+			<c:out value="">输出
+			<c:set var="key" value="变量值">  设置变量
+			<c:if test="${1==1}"></c:if>  if判断
+			<c:foreach items="${数组名或集合名}" var="声明集合中对象名称 自定义">
+				${自定义名字.属性名}
+			</c:foreach>
+			
+			
+		jsp的内置对象  9个
+			request，
+			session，
+			application,
+			response,     
+			pageContext,
+			page,
+			exception,
+			out,
+			config
+			
+		jsp的四大作用域
+			pageContext   
+			request
+			session
+			application
+		
+		完成用户修改功能
+			
+			
+		搜索 多个条件联合搜索
+		
+		分页
+	
+		作业：用户模块的注册 登陆 查询列表 删除 修改  搜索
+			产品分类模块的  新增  查询产品列表（搜索查询）  修改（产品分类名称） 删除
+	
+	
+	
+	
