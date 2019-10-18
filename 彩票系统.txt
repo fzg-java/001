@@ -1,0 +1,202 @@
+package com.test;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class RegisterTest {
+
+	public static void main(String[] args) {
+		/* 
+		 * rose
+		 * 
+		 * lily  123
+		 * jack  null
+		 * null  null
+		 * null  null
+		 */
+		//用来存储所有用户
+		String[][] users = new String[100][2];
+		//定义二维数组  存储所有彩票
+		int[][] allLottery = new int[10][7];
+		/*
+		 * 10 11 13 14 15 23 14 
+		 * 0 0 0 0 0 0 0
+		 * 0 0 0 0 0 0 0
+		 */
+		//用来记录是否登陆成功
+		boolean isLogin = false;
+		//控制台输入工具
+		Scanner scanner = new Scanner(System.in);
+		Random random = new Random();
+		while(true) {
+			System.out.println("1.注册");
+			System.out.println("2.登录");
+			System.out.println("3.机选");
+			System.out.println("4.手选");
+			System.out.println("5.查看已买彩票");
+			System.out.println("6.开奖");
+
+			System.out.println("请选择:");
+			int choose = scanner.nextInt();
+			switch (choose) {
+			case 1:
+				//注册
+		boolean isName = true;
+		 String name = null;
+		while(isName) {	
+			 System.out.println("请输入账号:");
+			name = scanner.next();
+			 for (int i = 0; i < users.length; i++) {
+				if (users[i][0] != null && users[i][0].equals(name)) {
+					isName = true;
+					System.out.println("账号已经存在！");
+					break;
+				}else {
+					isName = false;
+				}
+		} 
+		}
+		//---密码---
+		boolean isPasswd = true;
+		String password = null;
+		while (isPasswd) {
+			System.out.println("请输入密码：");
+			password = scanner.next();
+			System.out.println("请再次输入密码:");
+			String repeat = scanner.next();
+			if (password.equals(repeat)) {
+				isPasswd = false;
+			}else {
+				System.out.println("两次密码不一致");
+			}
+		}
+		System.out.println("注册成功！");
+		//-------	
+		//将账号 密码存储到数组中
+	//注意 判断 不为空的行 说明已经存储过数据了
+		for (int i = 0; i < users.length; i++) {
+			if (users[i][0] == null) {
+				users[i][0] = name;
+				users[i][1] = password;
+				break;
+			}
+		}
+				break;
+			case 2:
+				//登录
+			System.out.println("请输入账号:");
+			String login_name = scanner.next();
+			System.out.println("请输入密码:");
+			String login_passwd = scanner.next();
+			for (int i = 0; i < users.length; i++) {
+				if (users[i][0] != null && users[i][0].equals(login_name) 
+						&& users[i][1].equals(login_passwd)) {
+					isLogin = true;
+					System.out.println("登陆成功");
+					break;
+				}
+			}
+			if (isLogin == false) {
+				System.out.println("登陆失败！");
+			}
+			
+				
+				break;
+			case 3:
+				//机选
+				if (isLogin == false) {
+					System.out.println("请先登录!");
+					break;
+				}
+				System.out.println("请输入要购买的注数:");
+				int count = scanner.nextInt();
+				for (int i = 0; i < count; i++) {
+					//开始单注
+					int[] one = new int[7];
+					for (int j = 0; j < 6; j++) {
+						boolean isExits = false;
+						int t = random.nextInt(33) + 1;
+						//判断  t在不在数组中
+						for (int k = 0; k < 6; k++) {
+							if (t == one[k]) {
+								isExits = true;
+								break;
+							}
+						}
+						if (isExits == false) {
+							one[j] = t;
+						}else {
+							j--;
+						}
+					}
+				///---------红球处理完毕
+					one[6] = random.nextInt(16) + 1;
+					//------7个球处理完毕
+					//排序  前6个红球  0--5
+					for (int j = 0; j < 6 - 1; j++) {
+						for (int k = 0; k < 6 - 1 - j; k++) {
+							if (one[k] > one[k + 1]) {
+								int temp = one[k];
+								one[k] = one[k + 1];
+								one[k + 1] = temp;
+							}
+						}
+					}
+				//------排序结束	
+					//将一维数组one  放入allLottery二维数组
+					for (int j = 0; j < 10; j++) {
+							if (allLottery[j][0] == 0) {
+								for (int k = 0; k < 7; k++) {
+								allLottery[j][k] = one[k];	
+							}
+								break;
+						}
+						
+					}
+					
+				}
+			break;
+			case 4:
+				for (int i = 0; i < 100; i++) {
+					for (int j = 0; j < 2; j++) {
+						if (users[i][0] != null) {
+							System.out.print(users[i][j] + " ");
+						}
+					}
+				}
+				break;
+			case 5:
+				//查看
+				if (isLogin == false) {
+					System.out.println("请先登录!");
+					break;
+				}
+				for (int i = 0; i < allLottery.length; i++) {
+					
+						if (allLottery[i][0] != 0) {
+							for (int j = 0; j < 7; j++) {
+								if (allLottery[i][j] < 10) {
+									System.out.print("0" + allLottery[i][j] + " ");
+								}else {
+									System.out.print(allLottery[i][j] + " ");
+								}
+						
+						}
+							System.out.println();
+					}else {
+						break;
+					}
+					
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		
+		
+		
+		
+	}
+
+}
